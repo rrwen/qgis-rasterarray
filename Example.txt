@@ -1,0 +1,29 @@
+# Import and Append Script Path
+import sys
+sys.path.append("C:\Users\UserName\Desktop\QGIS_RasterArray")
+from RasterArray import *
+
+# 1. Create Game of Life Object with a Random Raster of dimension 10w by 10h
+# Store the Game of Life Object in Variable x
+x = GameofLife(width=10,height=10)
+
+# 2. Cycle the Game Board
+# Run through 10 cycles
+x.cycle(10)
+# Run through 5 cycles
+x.cycle(5)
+
+# 3. Reset the Game Board
+x.reset() # Reset to the beginning board
+
+# 4. Change Settings
+x.speed = 1 # pause for 1 second every cycle
+x.overwrite = False # do not overwrite cycles, display all of them as layers
+
+# 5. Cycle the Game Board after a Reset
+# Run through 8 cycles
+x.cycle(8)
+
+# New Game
+# Create a new Game of Life Object, but with a Given Raster
+x = GameofLife(raster="path_to_raster_file")

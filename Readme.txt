@@ -54,7 +54,7 @@ Cells Class Usage:
    -- "path_to_output_raster_file" is the location of the output
       raster file with extension
 
-#GameofLife Class Usage:
+GameofLife Class Usage:
 
  * Create a GameofLife object:
 

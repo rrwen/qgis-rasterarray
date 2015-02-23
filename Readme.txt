@@ -1,4 +1,4 @@
- #RasterArray.py
+ RasterArray.py
  Richard Wen @ Ryerson University (rwen@ryerson.ca)
  V0.03a
  --
@@ -9,7 +9,7 @@
 Below are instructions to utilize and get the RasterImage Module running in QGIS console.
 See Example.txt for an example run.
 
-#Module Setup:
+Module Setup:
  
  * 1. Go to the python command console in QGIS
       (Plugins > Python Console)
@@ -27,7 +27,7 @@ See Example.txt for an example run.
  * 5. Import the Cells class for use in the console:
       from RasterArray import *
  
-#Cells Class Usage:
+Cells Class Usage:
  
  * Create a Cells object with a raster file:
  

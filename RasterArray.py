@@ -5,12 +5,25 @@
  --
  Dependencies: QGIS 2.6.1 Brighton, Python 2.7
  Developed on: Windows 8 64-bit
- Last Updated: 23 February 2015
+ Last Updated: 28 February 2015
  
 ===============================================================
  
  Contains classes for raster image data interaction using
- array structures.
+ numpy array structures.
+ 
+ Modules [Submodules]:
+ * osgeo [gdal, osr]
+ * qgis [core, qgsMapLayerRegistry, QgsRasterLayer]
+ * numpy
+ * os
+ * time
+ * shutil
+ 
+ Helpers:
+ * (H1.) Array2Raster
+ * (H2.) xyOffset
+ * (H3.) createDirectory
  
  Classes [Methods]:
  * (1.) Cells [get, modify, toRaster]
@@ -208,7 +221,7 @@ class Cells (object):
 # from a randomly generated raster or a given raster file. The
 # user may then choose to start the game, and iterate through
 # a given number of cycles.
-# * Utilizes the Cells class from the RasterImage Module
+# * Utilizes the Cells class from the RasterArray Module
 #
 # -------------------------------------------------------------
 class GameofLife (object):

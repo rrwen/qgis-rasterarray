@@ -113,7 +113,8 @@ def createDirectory(directory):
 # C. Classes
 # =============================================================
 
-# (1.) Cells: str int int -> None
+# (1.) Cells: (str/numeric) int int (tupleof float) int int
+#              float float -> None
 # -------------------------------------------------------------
 #
 # A cells object obtained from a raster image file with a
@@ -130,7 +131,7 @@ class Cells (object):
     # (1.0) Initial Settings
     # ---------------------------------------------------------
     def __init__(self,
-                 inDir=None,
+                 inRaster=None,
                  nband=1,
                  EPSG=4326,
                  rasterOrigin=(0,0),
@@ -140,13 +141,26 @@ class Cells (object):
                  pixelHeight=1):
         
 	# (1.0.0) Default Random Cells
-	if inDir == None:
+	if inRaster == None:
 	    array = numpy.random.randint(2,size = (rows,cols))
+	
+	# (1.0.0) Cell Filled with Numbers
+	elif isinstance(inRaster,(int, long, float, complex)):
+	    array = numpy.ndarray((rows,cols))
+	    array.ndarray.fill(inRaster)
+	
+	# (1.0.0) Custom Cell with List
+	elif isinstance(inRaster,(list, tuple)):
+	    array = numpy.ndarray(inRaster)
+	    shape = array.shape
+	    rows = shape[0]
+	    cols = shape[1]
 	    
 	# (1.0.0) Specified Raster
 	else:
+	    
 	    # (1.0.1) Obtain Raster Information
-	    openRaster = gdal.Open(inDir)
+	    openRaster = gdal.Open(inRaster)
 	    band = openRaster.GetRasterBand(nband) # get single band
 	    rows = openRaster.RasterYSize # dimension rows
 	    cols = openRaster.RasterXSize # dimension columns
@@ -167,7 +181,7 @@ class Cells (object):
         self.cellWidth = pixelWidth
         self.cellHeight = pixelHeight
        
-    # (1.1) modify: int int num -> None
+    # (1.1) modify: int int float bool -> None
     # ----------------------------------------------------------
     # 
     # Modifies the cell at the location with a new value set by
@@ -190,7 +204,7 @@ class Cells (object):
         # (1.1.2) Modify Array
         self.arrayData[Offsets[0],Offsets[1]] = value
         
-    # (1.2) get: int int -> float
+    # (1.2) get: int int bool -> float
     # ----------------------------------------------------------
     # 
     # Obtains the value of the cell at the user specified
@@ -227,7 +241,8 @@ class Cells (object):
                      self.cellHeight,
                      self.EPSG)
 
-# (2.) GameofLife: str str -> None
+# (2.) GameofLife: str int str int (tupleof float) int int
+#                  float float bool  bool str-> None
 # -------------------------------------------------------------
 #
 # Based on Conway's Game of Life, creates a game of life object
@@ -252,6 +267,7 @@ class GameofLife (object):
                  cellWidth=1,
                  cellHeight=1,
                  overwrite=True,
+                 fastForward=False,
                  qmlStyle=os.path.join(
                      os.path.dirname(os.path.realpath(__file__)),
                      "GameofLife_Style.qml")):
@@ -288,6 +304,7 @@ class GameofLife (object):
 	self.startRaster = rasterPath
         self.inRaster = rasterPath
         self.output = outPath
+	self.fastForward = fastForward
 	self.cycles=0
         self.board = Cells(rasterPath, band, EPSG)
         self.speed = 0.65 ## delay in seconds after creating each cycle
@@ -307,17 +324,25 @@ class GameofLife (object):
     #   Ryerson University
     #
     # ----------------------------------------------------------
-    def cycle(self, n=1):
+    def cycle(self, n=1,jump=1):
         
         # (2.1.1) Cycle Cells of Game Board n Times
 	rows = self.board.rows
 	cols = self.board.cols
-	for cyclenum in range (0, n):
+	cyclenum = 0
+	while cyclenum < n*jump:
+	    cyclenum+=jump
 	    inBoard = Cells(self.inRaster,
 	                    nband=self.band,
 	                    EPSG=self.EPSG) ## store copy of original cells
 	    self.cycles+=1 ## keep track of number of cycles
-	    print ("Cycle: "+str(self.cycles))
+	    
+	    # (2.1.1) Print the Cycle Number, Also Causes Delay
+	    if self.fastForward == False:
+		print ("Cycle: "+str(self.cycles))
+	    ## Fast Forward Cycle Print
+	    elif self.fastForward == True and cyclenum == n:
+		print ("Cycle: "+str(self.cycles))
 	    
 	    # (2.1.1) Iterate All Cells on Board n Times
 	    for i in range(0, rows): 
@@ -375,7 +400,10 @@ class GameofLife (object):
 	    rlayer = QgsRasterLayer(outCyclePath, outLayer)
 	    rlayer.loadNamedStyle(self.style)
 	    QgsMapLayerRegistry.instance().addMapLayer(rlayer)
-	    time.sleep(self.speed) ## suspend display
+	    
+	    # (2.1.4) Suspend Display
+	    if self.fastForward == False:
+		time.sleep(self.speed) ## suspend display
 	    
     # (2.2) reset: None -> None
     # ----------------------------------------------------------

@@ -329,17 +329,20 @@ class GameofLife (object):
         # (2.1.1) Cycle Cells of Game Board n Times
 	rows = self.board.rows
 	cols = self.board.cols
-	for cyclenum in range(0,n):
+	iterations = (n*jump)+1
+	for cyclenum in range(1,iterations):
 	    inBoard = Cells(self.inRaster,
 	                    nband=self.band,
 	                    EPSG=self.EPSG) ## store copy of original cells
-	    self.cycles+=jump ## keep track of number of cycles
+	    ## Keep track of number of cycles
+	    if cyclenum%jump == 0:
+		self.cycles+=jump
 	    
 	    # (2.1.1) Print the Cycle Number, Also Causes Delay
-	    if self.fastForward == False and self.cycles%jump == 0:
+	    if self.fastForward == False and cyclenum%jump == 0:
 		print ("Cycle: "+str(self.cycles))
 	    ## Fast Forward Cycle Print
-	    elif self.fastForward == True and cyclenum == n:
+	    elif self.fastForward == True and cyclenum+1 == iterations:
 		print ("Cycle: "+str(self.cycles))
 	    
 	    # (2.1.1) Iterate All Cells on Board n Times
@@ -383,7 +386,6 @@ class GameofLife (object):
 	    ## Overwrite Raster if needed
 	    if self.overwrite:
 		outLayer = "cycle"
-		QgsMapLayerRegistry.instance().removeAllMapLayers()
 	    ## Otherwise Produce Rasters
 	    else:
 		outLayer = "cycle"+str(self.cycles)
@@ -395,12 +397,14 @@ class GameofLife (object):
 	    self.inRaster = outCyclePath
 	
 	    # (2.1.3) Display the Saved Raster Cycle
-	    if self.fastForward == False and self.cycles%jump == 0 and cyclenum != n:
+	    if (self.fastForward == False and cyclenum%jump == 0) or cyclenum+1 == iterations:
+		if self.overwrite: ## remove layer displays if overwriting
+		    QgsMapLayerRegistry.instance().removeAllMapLayers()
 		rlayer = QgsRasterLayer(outCyclePath, outLayer)
 		rlayer.loadNamedStyle(self.style)
 		QgsMapLayerRegistry.instance().addMapLayer(rlayer)
 		time.sleep(self.speed) ## suspend display
-	    
+		
     # (2.2) reset: None -> None
     # ----------------------------------------------------------
     #

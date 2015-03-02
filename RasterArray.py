@@ -393,14 +393,12 @@ class GameofLife (object):
 	    self.board.toRaster(outCyclePath)
 	    self.board = Cells(outCyclePath,self.band,self.EPSG)
 	    self.inRaster = outCyclePath
-	    
+	
 	    # (2.1.3) Display the Saved Raster Cycle
-	    rlayer = QgsRasterLayer(outCyclePath, outLayer)
-	    rlayer.loadNamedStyle(self.style)
-	    QgsMapLayerRegistry.instance().addMapLayer(rlayer)
-	    
-	    # (2.1.4) Suspend Display
-	    if self.fastForward == False and self.cycles%jump == 0:
+	    if self.fastForward == False and self.cycles%jump == 0 and cyclenum != n:
+		rlayer = QgsRasterLayer(outCyclePath, outLayer)
+		rlayer.loadNamedStyle(self.style)
+		QgsMapLayerRegistry.instance().addMapLayer(rlayer)
 		time.sleep(self.speed) ## suspend display
 	    
     # (2.2) reset: None -> None

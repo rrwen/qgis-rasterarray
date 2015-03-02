@@ -173,7 +173,7 @@ class Cells (object):
 	    array = band.ReadAsArray(0, 0, cols, rows).astype(numpy.float)
         
         # (1.0.3) Fields
-        self.arrayData = array
+        self.array = array
         self.EPSG = EPSG
         self.cols = cols
         self.rows= rows
@@ -202,7 +202,7 @@ class Cells (object):
 	    Offsets = (x,y)
         
         # (1.1.2) Modify Array
-        self.arrayData[Offsets[0],Offsets[1]] = value
+        self.array[Offsets[0],Offsets[1]] = value
         
     # (1.2) get: int int bool -> float
     # ----------------------------------------------------------
@@ -224,7 +224,7 @@ class Cells (object):
 	    Offsets = (x,y)
                 
         # (1.2.2) Return Cell Value        
-        return self.arrayData[Offsets[0],Offsets[1]]          
+        return self.array[Offsets[0],Offsets[1]]          
 
     # (1.3) toRaster: str -> None
     # ----------------------------------------------------------
@@ -234,7 +234,7 @@ class Cells (object):
     #
     # ----------------------------------------------------------
     def toRaster(self, outRaster):
-        Array2Raster(self.arrayData,
+        Array2Raster(self.array,
                      outRaster,
                      self.origin,
                      self.cellWidth,
@@ -329,16 +329,14 @@ class GameofLife (object):
         # (2.1.1) Cycle Cells of Game Board n Times
 	rows = self.board.rows
 	cols = self.board.cols
-	cyclenum = 0
-	while cyclenum < n*jump:
-	    cyclenum+=jump
+	for cyclenum in range(0,n):
 	    inBoard = Cells(self.inRaster,
 	                    nband=self.band,
 	                    EPSG=self.EPSG) ## store copy of original cells
 	    self.cycles+=jump ## keep track of number of cycles
 	    
 	    # (2.1.1) Print the Cycle Number, Also Causes Delay
-	    if self.fastForward == False:
+	    if self.fastForward == False and self.cycles%jump == 0:
 		print ("Cycle: "+str(self.cycles))
 	    ## Fast Forward Cycle Print
 	    elif self.fastForward == True and cyclenum == n:
@@ -402,7 +400,7 @@ class GameofLife (object):
 	    QgsMapLayerRegistry.instance().addMapLayer(rlayer)
 	    
 	    # (2.1.4) Suspend Display
-	    if self.fastForward == False:
+	    if self.fastForward == False and self.cycles%jump == 0:
 		time.sleep(self.speed) ## suspend display
 	    
     # (2.2) reset: None -> None

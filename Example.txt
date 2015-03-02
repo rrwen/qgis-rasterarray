@@ -30,10 +30,10 @@ x.overwrite = False # do not overwrite cycles, display all of them as layers
 x.cycle(8)
 
 # -------------------------------------------------------------------------
-# Game of Life with Created Raster and Cells Manipulation
+# Game of Life with Cell Manipulated Raster
 # -------------------------------------------------------------------------
 
-# 1. Create a Cell Array (y) with 10 by 10 Cell filled with Alive Cells (1)
+# 1. Create a Cell Array (y) with 10w by 10h Cell filled with Alive Cells (1)
 y = Cells(inRaster=1)
 
 # 2. See Cell Values at (x,y): (5,5) (2,3) (1,6) (8,4)
@@ -43,10 +43,10 @@ print y.get(1,6,geographic=False)
 print y.get(8,4,geographic=False)
 
 # 3. Modify Cell Values at (x,y): (5,5) (2,3) (1,6) (8,4)
-print y.modify(5,5,geographic=False)
-print y.modify(2,3,geographic=False)
-print y.modify(1,6,geographic=False)
-print y.modify(8,4,geographic=False)
+y.modify(5,5,0,geographic=False)
+y.modify(2,3,0,geographic=False)
+y.modify(1,6,0,geographic=False)
+y.modify(8,4,0,geographic=False)
 
 # 4. See Modified Cell Values at (x,y): (5,5) (2,3) (1,6) (8,4)
 print y.get(5,5,geographic=False)
@@ -55,8 +55,24 @@ print y.get(1,6,geographic=False)
 print y.get(8,4,geographic=False)
 
 # 5. Create Raster with Modified Cells
-y.toRaster("path\\to\\raster\\file")
+y.toRaster("path\\to\\raster\\file.tif")
 
 # 5. Start Game of Life with Created Raster
-x = GameofLife(raster="path\\to\\raster\\file")
-x.cycle(10)
+x = GameofLife(raster="path\\to\\raster\\file.tif")
+x.cycle(10) ## cycle 10 times
+x.cycle(10,5) ## cycle 10 times, but jump by 5 cycles each time
+
+# -------------------------------------------------------------------------
+# Game of Life with Custom Created Raster
+# -------------------------------------------------------------------------
+
+# 1. Create a Cell Array (y) with 5w by 5h Cell with Customed Values
+y = Cells(inRaster=[(1,1,1,0,1),(1,0,0,0,0),(0,0,0,1,1),(0,1,1,0,1),(1,0,1,0,1)])
+
+# 2. Create Raster with Custom Cells
+y.toRaster("path\\to\\raster\\file.tif")
+
+# 3. Start Game of Life with Custom Raster
+x = GameofLife(raster="path\\to\\raster\\file.tif")
+x.cycle(10) ## cycle 10 times
+x.cycle(10,2) ## cycle 10 times, but jump by 2 cycles each time

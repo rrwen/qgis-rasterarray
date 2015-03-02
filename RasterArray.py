@@ -5,7 +5,7 @@
  --
  Dependencies: QGIS 2.6.1 Brighton, Python 2.7
  Developed on: Windows 8 64-bit
- Last Updated: 28 February 2015
+ Last Updated: 01 March 2015
  
 ===============================================================
  
@@ -84,7 +84,7 @@ def Array2Raster(inArray,
     outRaster = None
     outBand = None
     inArray = None
-
+    
 # (H2.) xyOffset: int int (tupleof float) float float
 #                 -> (tupleof int)
 # ----------------------------------------------------------
@@ -120,33 +120,46 @@ def createDirectory(directory):
 # selected band. The cells represent an array that is mutable
 # with method calls. The cells object can then be converted
 # to a raster representing changes made to the original raster.
-# * An appropriate EPSG number must be set
+# * An appropriate EPSG number must be set, the default is 4326
+# * If no input directory is specified, a random raster will be
+#   used
 #
 # -------------------------------------------------------------
 class Cells (object):
     
     # (1.0) Initial Settings
     # ---------------------------------------------------------
-    def __init__(self, inDir, nband=1, EPSG=4326):
+    def __init__(self,
+                 inDir=None,
+                 nband=1,
+                 EPSG=4326,
+                 rasterOrigin=(0,0),
+                 cols=10,
+                 rows=10,
+                 pixelWidth=1,
+                 pixelHeight=1):
         
-        # (1.0.1) Obtain Raster Information
-        openRaster = gdal.Open(inDir)
-        band = openRaster.GetRasterBand(nband) # get single band
-        rows = openRaster.RasterYSize # dimension rows
-        cols = openRaster.RasterXSize # dimension columns
-        geotransform = openRaster.GetGeoTransform()
-        rasterOrigin = (geotransform[0], geotransform[3]) # coor of rast origin
-        pixelWidth = geotransform[1] # cell size x
-        pixelHeight =  geotransform[5] # cell size y
+	# (1.0.0) Default Random Cells
+	if inDir == None:
+	    array = numpy.random.randint(2,size = (rows,cols))
+	    
+	# (1.0.0) Specified Raster
+	else:
+	    # (1.0.1) Obtain Raster Information
+	    openRaster = gdal.Open(inDir)
+	    band = openRaster.GetRasterBand(nband) # get single band
+	    rows = openRaster.RasterYSize # dimension rows
+	    cols = openRaster.RasterXSize # dimension columns
+	    geotransform = openRaster.GetGeoTransform()
+	    rasterOrigin = (geotransform[0], geotransform[3]) # coor of rast origin
+	    pixelWidth = geotransform[1] # cell size x
+	    pixelHeight =  geotransform[5] # cell size y
+	    
+	    # (1.0.2) Obtain Array Data     
+	    array = band.ReadAsArray(0, 0, cols, rows).astype(numpy.float)
         
-        # (1.0.2) Obtain Array Data     
-        array = band.ReadAsArray(0, 0, cols, rows).astype(numpy.float)
-        
-        # (1.0.3) Main Fields
-        self.inRaster = openRaster
+        # (1.0.3) Fields
         self.arrayData = array
-        
-        # (1.0.4) Sub Fields
         self.EPSG = EPSG
         self.cols = cols
         self.rows= rows
@@ -229,9 +242,9 @@ class GameofLife (object):
     # (2.0) Initial Settings
     # ---------------------------------------------------------
     def __init__(self,
-                 out_directory="default",
+                 out_directory=None,
                  EPSG=4326,
-                 raster = "random",
+                 raster = None,
                  band=1,
                  origin=(0,0),
                  width=25,
@@ -244,7 +257,7 @@ class GameofLife (object):
                      "GameofLife_Style.qml")):
 	
 	# (2.0.1) Create Default Path at Script Directory
-	if out_directory is "default":
+	if out_directory == None:
 	    outPath = os.path.join(os.path.dirname(os.path.realpath(__file__)),
 	                           "GameofLife_Output")
 	    createDirectory(outPath)
@@ -252,8 +265,8 @@ class GameofLife (object):
 	    outPath = createDirectory(out_directory)
         
         # (2.0.1) Create Random Raster if no raster settings defined
-        if raster is "random":
-            random_array = numpy.random.randint(2,size = (height,width))
+        if raster == None:
+	    random_array = numpy.random.randint(2,size = (height,width))
             rasterPath = os.path.join(outPath,"start.tif")
             Array2Raster(random_array,
                          rasterPath,

@@ -1,3 +1,7 @@
+
+# Richard Wen @ Ryerson University (rwen@ryerson.ca)
+# Last Updated: 02 March 2015
+
 # -------------------------------------------------------------------------
 # Setup in Python Console on QGIS
 # -------------------------------------------------------------------------

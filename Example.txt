@@ -1,68 +1,62 @@
-
-# Richard Wen @ Ryerson University (rwen@ryerson.ca)
-# Last Updated: 01 March 2015
-
-# ----------------------------------------------------------------------------------
-# Setup in the Python Console on QGIS
-# ----------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+# Setup in Python Console on QGIS
+# -------------------------------------------------------------------------
 import sys
-sys.path.append("C:\\path\\to\\folder\\QGIS_RasterArray")
+sys.path.append("path\\to\\folder\\QGIS_RasterArray")
 from RasterArray import *
 
+# -------------------------------------------------------------------------
+# Game of Life with Random Raster
+# -------------------------------------------------------------------------
 
-# ----------------------------------------------------------------------------------
-# Game of Life with Random Board
-# ----------------------------------------------------------------------------------
-
-# 1. Create Game of Life Object (x) with a Random Raster of dimension 10w by 10h
+# 1. Create Game of Life Object with a Random Raster (x) of dimension 10w by 10h
 x = GameofLife(width=10,height=10)
 
-# 2. Cycle Game Board x
-## Run through 10 cycles
+# 2. Cycle the Game Board
+# Run through 10 cycles
 x.cycle(10)
-## Run through 5 cycles
+# Run through 5 cycles
 x.cycle(5)
 
 # 3. Reset the Game Board
 x.reset() # Reset to the beginning board
 
 # 4. Change Settings
-x.speed = 1 ## pause for 1 second every cycle
-x.overwrite = False ## do not overwrite cycles, display all of them as layers 1..n
+x.speed = 1 # pause for 1 second every cycle
+x.overwrite = False # do not overwrite cycles, display all of them as layers
 
-# 5. Cycle Game Board x after a Reset
-## Run through 8 cycles
+# 5. Cycle the Game Board after a Reset
+# Run through 8 cycles
 x.cycle(8)
 
-# ----------------------------------------------------------------------------------
-# Game of Life with a Generated Raster
-# ----------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+# Game of Life with Created Raster and Cells Manipulation
+# -------------------------------------------------------------------------
 
-# 1. Create a new Game of Life Object, but with a Created Raster
-## A Cell Array (y) of 10 by 10 (Default) filled with alive cells (1)
-y = Cells(1)
+# 1. Create a Cell Array (y) with 10 by 10 Cell filled with Alive Cells (1)
+y = Cells(inRaster=1)
 
-# 2.1 See the Cell Values at xys: (1,5), (5,5), (8,4) and (2,3)
-print y.get(1,5,geographic=False)
+# 2. See Cell Values at (x,y): (5,5) (2,3) (1,6) (8,4)
 print y.get(5,5,geographic=False)
-print y.get(8,4,geographic=False)
 print y.get(2,3,geographic=False)
+print y.get(1,6,geographic=False)
+print y.get(8,4,geographic=False)
 
-# 2.2 Modify the Board at xys: (1,5), (5,5), (8,4) and (2,3) to dead (0)
-y.modify(1,5,0,geographic=False)
-y.modify(5,5,0,geographic=False)
-y.modify(8,4,0,geographic=False)
-y.modify(2,3,0,geographic=False)
+# 3. Modify Cell Values at (x,y): (5,5) (2,3) (1,6) (8,4)
+print y.modify(5,5,geographic=False)
+print y.modify(2,3,geographic=False)
+print y.modify(1,6,geographic=False)
+print y.modify(8,4,geographic=False)
 
-# 2.3 See the Modified Cell Values at xys: (1,5), (5,5), (8,4) and (2,3)
-print y.get(1,5,geographic=False)
+# 4. See Modified Cell Values at (x,y): (5,5) (2,3) (1,6) (8,4)
 print y.get(5,5,geographic=False)
-print y.get(8,4,geographic=False)
 print y.get(2,3,geographic=False)
+print y.get(1,6,geographic=False)
+print y.get(8,4,geographic=False)
 
-# 3. Create our Raster at a Directory with (y)
+# 5. Create Raster with Modified Cells
 y.toRaster("path\\to\\raster\\file")
 
-# 4. Start and Cycle our Game of Life Object (x) with our Created Raster
+# 5. Start Game of Life with Created Raster
 x = GameofLife(raster="path\\to\\raster\\file")
 x.cycle(10)

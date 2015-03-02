@@ -146,12 +146,12 @@ class Cells (object):
 	
 	# (1.0.0) Cell Filled with Numbers
 	elif isinstance(inRaster,(int, long, float, complex)):
-	    array = numpy.ndarray((rows,cols))
-	    array.ndarray.fill(inRaster)
+	    array = numpy.zeros((rows,cols))
+	    array.fill(inRaster)
 	
 	# (1.0.0) Custom Cell with List
 	elif isinstance(inRaster,(list, tuple)):
-	    array = numpy.ndarray(inRaster)
+	    array = numpy.array(inRaster)
 	    shape = array.shape
 	    rows = shape[0]
 	    cols = shape[1]
@@ -335,7 +335,7 @@ class GameofLife (object):
 	    inBoard = Cells(self.inRaster,
 	                    nband=self.band,
 	                    EPSG=self.EPSG) ## store copy of original cells
-	    self.cycles+=1 ## keep track of number of cycles
+	    self.cycles+=jump ## keep track of number of cycles
 	    
 	    # (2.1.1) Print the Cycle Number, Also Causes Delay
 	    if self.fastForward == False:

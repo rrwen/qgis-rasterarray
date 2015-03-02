@@ -5,7 +5,7 @@
  --
  Dependencies: QGIS 2.6.1 Brighton, Python 2.7
  Developed on: Windows 8 64-bit
- Last Updated: 01 March 2015
+ Last Updated: 02 March 2015
 
 *******************************************
 Below are instructions to utilize and get 
@@ -39,13 +39,16 @@ Cells Class Example Usages:
  A. Creating the Cells Object
  ==========================================
  * Create a Cells object as a random array:
+   
    cellsObject = Cells()
 
  * Create a Cells object as a filled array:
+   
    cellsObject = Cells(inRaster=n)
    -- n is the value to fill the array with
 
  * Create a Cells object as a custom array:
+   
    cellsObject = Cells(inRaster=[(r1c1,r1c2,r1c3),(r2c1,r2c2,r2c3)])
    -- r1c1..rncn refers to row 1 (r1) and column 1(c1) to row n (rn) and column n (cn)
    -- The containers [] define a list and () define a tuple

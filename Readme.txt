@@ -154,11 +154,6 @@ GameofLife Class Example Usages:
    GoLObject.speed = x
    -- x is the refresh speed in seconds before processing the next cycle
 
- * Enable fast forward:
-
-   GoLObject.fastForward = True
-   -- If set to true, the cycle command will only display the ending cycle
-
  C2. Dimensions
  .......................................... 
  * Set the width and height when creating the GameofLife object:

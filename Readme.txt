@@ -1,167 +1,171 @@
  
- RasterArray.py
- * Richard Wen @ Ryerson University (rwen@ryerson.ca)
- * V0.04a
- 
- * Dependencies: QGIS 2.6.1 Brighton, Python 2.7
- * Developed on: Windows 8 64-bit
- * Last Updated: 29 March 2015
+# RasterArray.py  
+***  
 
-*******************************************
-Below are instructions to utilize and get 
-the RasterImage Module running in the
-QGIS console.
-See Example.txt for an example run.
-*******************************************
-
- Module Setup:
- ==========================================
- * Go to the python command console in QGIS
-   (Plugins > Python Console)
- 
- * Enter in the console:
-   import sys
- 
- * Find the location path of this script
-   -- Example: C:\\User\\Desktop
- 
- * Append it to the QGIS system paths with:
-   sys.path.append(FILE_PATH_HERE)
-   -- Example: sys.path.append ("C:\\User\\Desktop")
+_Richard Wen @ Ryerson University (rwen@ryerson.ca)_  
+_V0.04a_  
+  
+_Dependencies: QGIS 2.6.1 Brighton, Python 2.7_  
+_Developed on: Windows 8 64-bit_  
+_Last Updated: 29 March 2015_  
+  
+***  
+  
+  
+* **Download QGIS at http://www.qgis.org/en/site/**  
+* **See [Example.txt](https://github.com/rwenite/QGIS_RasterArray/blob/master/Example.txt) for an example run.**
+   
+  
+#  QGIS Python Console Setup:
+  
+  
+ 1. Go to the python command console in QGIS  
+   `(Plugins > Python Console)`
+  
+ 2. Enter in the console:  
+    `import sys`
+  
+ 3. Find the location path of this script  
+    `-- Example: C:\\User\\Desktop`
+  
+ 4. Append it to the QGIS system paths with:  
+       `sys.path.append(FILE_PATH_HERE)`   
+       `-- Example: sys.path.append ("C:\\User\\Desktop")`
       
- * Import the Cells class for use in the console:
-   from RasterArray import
-
-*******************************************
-Cells Class Example Usages:
-*******************************************
-
- A. Creating the Cells Object
- ==========================================
+ 5.  Import the Cells class for use in the console:  
+    `from RasterArray import`
+  
+  
+# Cells:
+  
+  
+##  A. Creating the Cells Object  
+  
  * Create a Cells object as a random array:
    
-   cellsObject = Cells()
-
+    `cellsObject = Cells()`
+  
  * Create a Cells object as a filled array:
    
-   cellsObject = Cells(inRaster=n)
-   -- n is the value to fill the array with
-
+    `cellsObject = Cells(inRaster=n)`  
+    + n is the value to fill the array with
+  
  * Create a Cells object as a custom array:
    
-   cellsObject = Cells(inRaster=[(r1c1,r1c2,r1c3),(r2c1,r2c2,r2c3)])
-   -- r1c1..rncn refers to row 1 (r1) and column 1(c1) to row n (rn) and column n (cn)
-   -- The containers [] define a list and () define a tuple
- 
+    `cellsObject = Cells(inRaster=[(r1c1,r1c2,r1c3),(r2c1,r2c2,r2c3)])`  
+    + r1c1..rncn refers to row 1 (r1) and column 1(c1) to row n (rn) and column n (cn)  
+    + The containers [] define a list and () define a tuple
+  
  * Create a Cells object with a raster file:
  
-   cellsObject = Cells ("path_to_raster_file")
-   -- "path_to_raster_file" is the location of the raster with
+    `cellsObject = Cells ("path_to_raster_file")`  
+    + "path_to_raster_file" is the location of the raster with
       extension
- 
- B. Modifying and Obtaining Cell Values
- ==========================================
+  
+##  B. Modifying and Obtaining Cell Values  
+   
  * Modify a cell value:
    
-   cellsObject.modify(x, y, value)
-   -- x and y are the coordinates of the cell to modify
-   -- value is the value to replace the cell value at the location
-   -- for non-geographic coordinates, use (x, y, value, geographic=False)
-
+    `cellsObject.modify(x, y, value)`  
+    + x and y are the coordinates of the cell to modify  
+    + value is the value to replace the cell value at the location  
+    + for non-geographic coordinates, use (x, y, value, geographic=False)
+  
  * Obtain a cell value:
  
-   cellsObject.get(x, y)
-   -- x and y are coordinates of the cell to obtain
-   -- for non-geographic coordinates, use (x, y, value, geographic=False)
- 
- C. Ouput to Raster TIF
- ==========================================
+    `cellsObject.get(x, y)`  
+    + x and y are coordinates of the cell to obtain  
+    + for non-geographic coordinates, use (x, y, value, geographic=False)
+  
+##  C. Ouput to Raster TIF  
+  
  * Output a raster representing the changes:
  
-   cellsObject.toRaster("path_to_output_raster_file")
-   -- "path_to_output_raster_file" is the location of the output
+    `cellsObject.toRaster("path_to_output_raster_file")`  
+    + "path_to_output_raster_file" is the location of the output
       raster file with extension
-
- D. Additional Settings
- ==========================================
+  
+##  D. Additional Settings  
+  
  * Set the band of the raster
    
-   cellsObject = Cells (nband=n)
-   -- n is band number of the input raster, does not work for default
-
+    `cellsObject = Cells (nband=n)`  
+    + n is band number of the input raster, does not work for default
+  
  * Set the spatial reference system of the randomly generated raster
    
-   cellsObject = Cells (EPSG=coorSys)
-   -- coorSys is the EPSG number of the spatial reference of the randomly generated raster
-
+    `cellsObject = Cells (EPSG=coorSys)`  
+    + coorSys is the EPSG number of the spatial reference of the randomly generated raster
+  
  * Setting the dimensions and cell measurements of the randomly generated raster
    
-   cellsObject = Cells (cols=c,rows=r,pixelWidth=w,pixelHeight)
-   -- c and r are inputs in whole numbers to specify the number of columns and rows
-   -- w and h are inputs in real numbers to specify the width and height of cells
+    `cellsObject = Cells (cols=c,rows=r,pixelWidth=w,pixelHeight)`  
+    + c and r are inputs in whole numbers to specify the number of columns and rows  
+    + w and h are inputs in real numbers to specify the width and height of cells
+  
+  
+# GameofLife:
+  
+  
+##  A. Creating a GameofLife Object  
+  
+ * Create a GameofLife object:  
 
-*******************************************
-GameofLife Class Example Usages:
-*******************************************
+    `GoLObject = GameofLife()`
+  
+##  B. Cycling the Game Board  
+  
+ * Cycle the game n times:  
 
- A. Creating a GameofLife Object
- ==========================================
- * Create a GameofLife object:
-
-   GoLObject = GameofLife()
-
- B. Cycling the Game Board
- ==========================================
- * Cycle the game n times:
-
-   GoLObject.cycle(n)
-   -- n is the number of times to cycle the gaming board
-
+    `GoLObject.cycle(n)`  
+    + n is the number of times to cycle the gaming board
+  
  * Reset the game:
 
-   x.reset()
-   -- reset the gaming board to the initial state
-
- C. Additional Settings
- ==========================================
-
- C1. Data
- .......................................... 
+    `x.reset()`  
+    + reset the gaming board to the initial state
+  
+##  C. Additional Settings  
+  
+###C1. Data  
+  
  * Set the initial board when creating the GameofLife object:
    
-   GoLObject = GameofLife(raster="path_to_raster_file")
-   -- "path_to_raster_file" is the path to the raster file with extension to be used for the initial board
-
+    `GoLObject = GameofLife(raster="path_to_raster_file")`  
+    + "path_to_raster_file" is the path to the raster file with extension to be used for the initial board
+  
  * Set whether or not to overwrite cycles:
 
-   GoLObject.overwrite = boolean
-   -- boolean is set to True or False, where True overwrites each cycle, and False does not overwrite each cycle
-
+    `GoLObject.overwrite = boolean`  
+    + boolean is set to True or False, where True overwrites each cycle, and False does not overwrite each cycle
+  
  * Set the spatial reference system of the randomly generated raster
    
-   GoLObject = GameofLife(EPSG=coorSys)
-   -- coorSys is the EPSG number of the spatial reference of the randomly generated raster
-
- C1. Aesthetics
- .......................................... 
+    `GoLObject = GameofLife(EPSG=coorSys)`  
+    + coorSys is the EPSG number of the spatial reference of the randomly generated raster
+  
+###C2. Aesthetics  
+  
  * Set the style of the start and cycle boards with a qml file:
 
-   GoLObject.qmlStyle = "path_to_qml_file"
-   -- "path_to_qml_file" is the path to the QGIS .qml style file used for changing the style of the output board
-
+    `GoLObject.qmlStyle = "path_to_qml_file"`  
+    + "path_to_qml_file" is the path to the QGIS .qml style file used for changing the style of the output board
+  
  * Set the refresh speed:
 
-   GoLObject.speed = x
-   -- x is the refresh speed in seconds before processing the next cycle
-
- C2. Dimensions
- .......................................... 
+    `GoLObject.speed = x`  
+    + x is the refresh speed in seconds before processing the next cycle
+  
+###C3. Dimensions  
+  
  * Set the width and height when creating the GameofLife object:
    
-   GoLObject = GameofLife(width=w, height=h)
-   -- w and h are inputs in whole numbers to specify the width and height of the randomly generated board
- 
+    `GoLObject = GameofLife(width=w, height=h)`  
+    + w and h are inputs in whole numbers to specify the width and height of the randomly generated board
+  
 * Set the raster cell sizes when creating the GameofLife object:
 
-   GoLObject = GameofLife(cellWidth=w, cellHeight=h)
-   -- w and h are inputs in real numbers to specify the width and height of cells in the randomly generated board
+    `GoLObject = GameofLife(cellWidth=w, cellHeight=h)`  
+    + w and h are inputs in real numbers to specify the width and height of cells in the randomly generated board
+  
+  

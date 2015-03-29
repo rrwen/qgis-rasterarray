@@ -23,11 +23,11 @@ Last Updated: 29 March 2015
     `import sys`
   
  3. Find the location path of this script  
-    `-- Example: C:\\User\\Desktop`
+    `C:\\User\\Desktop`
   
  4. Append it to the QGIS system paths with:  
        `sys.path.append(FILE_PATH_HERE)`   
-       `-- Example: sys.path.append ("C:\\User\\Desktop")`
+       `sys.path.append ("C:\\User\\Desktop")`
       
  5.  Import the Cells class for use in the console:  
     `from RasterArray import`

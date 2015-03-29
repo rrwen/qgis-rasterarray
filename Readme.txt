@@ -1,7 +1,7 @@
  
  RasterArray.py
  * Richard Wen @ Ryerson University (rwen@ryerson.ca)
- * V0.03a
+ * V0.04a
  
  * Dependencies: QGIS 2.6.1 Brighton, Python 2.7
  * Developed on: Windows 8 64-bit

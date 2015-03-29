@@ -616,15 +616,11 @@ class GameofLife (object):
 		    # (2.1.1) Count Neighbours
 		    for k in range(i-1, i+2): 
 			for l in range(j-1, j+2):
-			    ## Obtain rows and cols of neighbours
-			    nbrRow = k%rows
-			    nbrCol = l%cols
 			    ## Only count neighbours and not the cell itself
-			    if (nbrCol,nbrRow) != (j,i):
-				sumNeighbors = sumNeighbors+inBoard.get(nbrCol,nbrRow,geographic=False)
-			## If Over 3 Sum of Neighbours Break Loop
-			if sumNeighbors > 3:
-				break
+			    if (l,k) != (j,i):
+				sumNeighbors = sumNeighbors+inBoard.get(l%cols,
+				                                        k%rows,
+				                                        geographic=False)
 			
 		    # (2.1.2a) Alive Cells
 		    if boardValue == 1:

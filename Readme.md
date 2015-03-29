@@ -1,6 +1,6 @@
  
 # RasterArray.py  
-***  
+  
 
 _Richard Wen @ Ryerson University (rwen@ryerson.ca)_  
 _V0.04a_  

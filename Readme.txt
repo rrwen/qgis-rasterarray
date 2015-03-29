@@ -1,5 +1,6 @@
  
  RasterArray.py
+ 
  * Richard Wen @ Ryerson University (rwen@ryerson.ca)
  * V0.04a
  
@@ -8,10 +9,15 @@
  * Last Updated: 29 March 2015
 
 *******************************************
+
 Below are instructions to utilize and get 
 the RasterImage Module running in the
 QGIS console.
+
+Download QGIS at http://www.qgis.org/en/site/
+
 See Example.txt for an example run.
+
 *******************************************
 
  Module Setup:

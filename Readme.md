@@ -2,12 +2,12 @@
 # RasterArray.py  
   
 
-_Richard Wen @ Ryerson University (rwen@ryerson.ca)_  
-_V0.04a_  
+Richard Wen @ Ryerson University (rwen@ryerson.ca)  
+V0.04a  
   
-_Dependencies: QGIS 2.6.1 Brighton, Python 2.7_  
-_Developed on: Windows 8 64-bit_  
-_Last Updated: 29 March 2015_  
+Dependencies: QGIS 2.6.1 Brighton, Python 2.7  
+Developed on: Windows 8 64-bit  
+Last Updated: 29 March 2015  
   
 * **Download QGIS at http://www.qgis.org/en/site/**  
 * **See [Example.txt](https://github.com/rwenite/QGIS_RasterArray/blob/master/Example.txt) for an example run.**

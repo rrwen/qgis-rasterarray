@@ -9,9 +9,6 @@ _Dependencies: QGIS 2.6.1 Brighton, Python 2.7_
 _Developed on: Windows 8 64-bit_  
 _Last Updated: 29 March 2015_  
   
-***  
-  
-  
 * **Download QGIS at http://www.qgis.org/en/site/**  
 * **See [Example.txt](https://github.com/rwenite/QGIS_RasterArray/blob/master/Example.txt) for an example run.**
    

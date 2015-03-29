@@ -1,36 +1,36 @@
  
  RasterArray.py
- Richard Wen @ Ryerson University (rwen@ryerson.ca)
- V0.03a
- --
- Dependencies: QGIS 2.6.1 Brighton, Python 2.7
- Developed on: Windows 8 64-bit
- Last Updated: 02 March 2015
+ * Richard Wen @ Ryerson University (rwen@ryerson.ca)
+ * V0.03a
+ 
+ * Dependencies: QGIS 2.6.1 Brighton, Python 2.7
+ * Developed on: Windows 8 64-bit
+ * Last Updated: 29 March 2015
 
 *******************************************
 Below are instructions to utilize and get 
 the RasterImage Module running in the
-QGIS console. See Example.txt for an 
-example run.
+QGIS console.
+See Example.txt for an example run.
 *******************************************
 
  Module Setup:
  ==========================================
- * 1. Go to the python command console in QGIS
-      (Plugins > Python Console)
+ * Go to the python command console in QGIS
+   (Plugins > Python Console)
  
- * 2. Enter in the console:
-      import sys
+ * Enter in the console:
+   import sys
  
- * 3. Find the location path of this script
-      -- Example: C:\\User\\Desktop
+ * Find the location path of this script
+   -- Example: C:\\User\\Desktop
  
- * 4. Append it to the QGIS system paths with:
-      sys.path.append(FILE_PATH_HERE)
-      -- Example: sys.path.append ("C:\\User\\Desktop")
+ * Append it to the QGIS system paths with:
+   sys.path.append(FILE_PATH_HERE)
+   -- Example: sys.path.append ("C:\\User\\Desktop")
       
- * 5. Import the Cells class for use in the console:
-      from RasterArray import *
+ * Import the Cells class for use in the console:
+   from RasterArray import
 
 *******************************************
 Cells Class Example Usages:

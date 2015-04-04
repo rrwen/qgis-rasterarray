@@ -1,11 +1,11 @@
 '''
  RasterArray.py
  Richard Wen @ Ryerson University (rwen@ryerson.ca)
- V0.04a
+ V0.05a
  
  Dependencies: QGIS 2.6.1 Brighton, Python 2.7
  Developed on: Windows 8 64-bit
- Last Updated: 29 March 2015
+ Last Updated: 03 April 2015
  
 ===============================================================
  
@@ -349,7 +349,7 @@ class Cells (object):
 	    Offsets = (x,y)
         
         # (1.1.2) Modify Array
-        self.array[Offsets[0],Offsets[1]] = value
+        self.array[Offsets[1],Offsets[0]] = value
 	
     '''
      (1.2) get: int int bool -> float
@@ -392,7 +392,7 @@ class Cells (object):
 	    Offsets = (x,y)
                 
         # (1.2.2) Return Cell Value        
-        return self.array[Offsets[0],Offsets[1]] 
+        return self.array[Offsets[1],Offsets[0]] 
     
     '''
      (1.3) toRaster: str -> Effect

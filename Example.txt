@@ -1,6 +1,6 @@
 
 # Richard Wen @ Ryerson University (rwen@ryerson.ca)
-# Last Updated: 02 March 2015
+# Last Updated: 03 April 2015
 
 # -------------------------------------------------------------------------
 # Setup in Python Console on QGIS
@@ -70,7 +70,7 @@ x.cycle(10,5) ## cycle 10 times, but jump by 5 cycles each time
 # Game of Life with Custom Created Raster
 # -------------------------------------------------------------------------
 
-# 1. Create a Cell Array (y) with 5w by 5h Cell with Customed Values
+# 1. Create a Cell Array (y) with 5w by 5h Cell with Custom Values
 y = Cells(inRaster=[(1,1,1,0,1),(1,0,0,0,0),(0,0,0,1,1),(0,1,1,0,1),(1,0,1,0,1)])
 
 # 2. Create Raster with Custom Cells

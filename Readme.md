@@ -7,7 +7,6 @@ V0.04a
   
 Dependencies: QGIS 2.6.1 Brighton, Python 2.7  
 Developed on: Windows 8 64-bit  
-Last Updated: 29 March 2015  
   
 * **Download QGIS at http://www.qgis.org/en/site/**  
 * **See [Example.txt](https://github.com/rwenite/QGIS_RasterArray/blob/master/Example.txt) for an example run.**
@@ -74,7 +73,7 @@ Last Updated: 29 March 2015
     + x and y are coordinates of the cell to obtain  
     + for non-geographic coordinates, use (x, y, value, geographic=False)
   
-##  C. Ouput to Raster TIF  
+##  C. Output to Raster TIF  
   
  * Output a raster representing the changes:
  

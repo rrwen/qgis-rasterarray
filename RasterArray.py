@@ -5,7 +5,6 @@
  
  Dependencies: QGIS 2.6.1 Brighton, Python 2.7
  Developed on: Windows 8 64-bit
- Last Updated: 03 April 2015
  
 ===============================================================
  

@@ -29,7 +29,7 @@ Developed on: Windows 8 64-bit
        `sys.path.append ("C:\\User\\Desktop")`
       
  5.  Import the Cells class for use in the console:  
-    `from RasterArray import`
+    `from RasterArray import *`
   
   
 # Cells:

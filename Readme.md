@@ -1,16 +1,13 @@
  
 # RasterArray.py  
   
-
-Richard Wen @ Ryerson University (rwen@ryerson.ca)  
-V0.04a  
-  
 Dependencies: QGIS 2.6.1 Brighton, Python 2.7  
-Developed on: Windows 8 64-bit  
+
+A Python module for manipulating geographic raster image data in QGIS using numpy arrays. Includes a demonstration for Conway's Game of Life.  
 
 * **View the [Game of Life Blog Post](http://gis.blog.ryerson.ca/2015/03/)**
 * **View [Example.txt](https://github.com/rwenite/QGIS_RasterArray/blob/master/Example.txt) for an example run.**
-
+ 
   
 #  QGIS Python Console Setup:
   

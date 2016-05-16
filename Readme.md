@@ -1,5 +1,5 @@
  
-# RasterArray.py  
+# Quantum GIS Raster Array Module 
 
 A Python module for manipulating geographic raster image data in QGIS using numpy arrays. Includes a demonstration for Conway's Game of Life.  
 

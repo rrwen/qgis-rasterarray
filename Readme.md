@@ -9,14 +9,14 @@ A Python module for manipulating geographic raster image data in QGIS using nump
 _Dependencies: QGIS 2.6.1 Brighton, Python 2.7_  
   
   
-#  Authors:
+#  Authors
   
   
 * Richard Wen (rwen@ryerson.ca)
 * Dr. Claus Rinner (crinner@ryerson.ca)
   
 
-#  QGIS Python Console Setup:
+#  QGIS Python Console Setup
   
   
  1. Go to the python command console in QGIS  
@@ -36,7 +36,7 @@ _Dependencies: QGIS 2.6.1 Brighton, Python 2.7_
     `from RasterArray import *`
   
   
-# Cells:
+# Cells
   
   
 ##  A. Creating the Cells Object  
@@ -104,7 +104,7 @@ _Dependencies: QGIS 2.6.1 Brighton, Python 2.7_
     + w and h are inputs in real numbers to specify the width and height of cells
   
   
-# GameofLife:
+# GameofLife
   
   
 ##  A. Creating a GameofLife Object  

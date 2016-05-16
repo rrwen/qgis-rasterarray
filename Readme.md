@@ -9,6 +9,13 @@ A Python module for manipulating geographic raster image data in QGIS using nump
 _Dependencies: QGIS 2.6.1 Brighton, Python 2.7_  
   
   
+#  Authors:
+  
+  
+* Richard Wen (rwen@ryerson.ca)
+* Dr. Claus Rinner (crinner@ryerson.ca)
+  
+
 #  QGIS Python Console Setup:
   
   

@@ -10,6 +10,7 @@ Developed on: Windows 8 64-bit
   
 * **Download QGIS at http://www.qgis.org/en/site/**  
 * **See [Example.txt](https://github.com/rwenite/QGIS_RasterArray/blob/master/Example.txt) for an example run.**
+* **See the [Game of Life Blog Post](http://gis.blog.ryerson.ca/2015/03/)**
    
   
 #  QGIS Python Console Setup:

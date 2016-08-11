@@ -165,5 +165,5 @@ _Dependencies: QGIS 2.6.1 Brighton, Python 2.7_
 #  Authors
   
   
-* Richard Wen (rwen@ryerson.ca)
+* Richard Wen (rwenite@gmail.com)
 * Dr. Claus Rinner (crinner@ryerson.ca)

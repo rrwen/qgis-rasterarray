@@ -120,7 +120,7 @@ _Dependencies: QGIS 2.6.1 Brighton, Python 2.7_
   
 ##  C. Additional Settings  
   
-###C1. Data  
+### C1. Data  
   
  * Set the initial board when creating the GameofLife object:
    
@@ -137,7 +137,7 @@ _Dependencies: QGIS 2.6.1 Brighton, Python 2.7_
     `GoLObject = GameofLife(EPSG=coorSys)`  
     + coorSys is the EPSG number of the spatial reference of the randomly generated raster
   
-###C2. Aesthetics  
+### C2. Aesthetics  
   
  * Set the style of the start and cycle boards with a qml file:
 
@@ -149,7 +149,7 @@ _Dependencies: QGIS 2.6.1 Brighton, Python 2.7_
     `GoLObject.speed = x`  
     + x is the refresh speed in seconds before processing the next cycle
   
-###C3. Dimensions  
+### C3. Dimensions  
   
  * Set the width and height when creating the GameofLife object:
    

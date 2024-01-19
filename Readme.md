@@ -3,8 +3,8 @@
 
 A Python module for manipulating geographic raster image data in QGIS using numpy arrays. Includes a demonstration for Conway's Game of Life.  
 
-* **View the [Game of Life Blog Post](http://gis.blog.ryerson.ca/2015/03/)**
-* **View [Example.txt](https://github.com/rwenite/QGIS_RasterArray/blob/master/Example.txt) for an example run.** 
+* **View the [Game of Life Blog Post](https://gis.blog.torontomu.ca/2015/03/08/a-raster-based-game-of-life-using-python-in-qgis/)**
+* **View [Example.txt](Example.txt) for an example run.** 
  
 _Dependencies: QGIS 2.6.1 Brighton, Python 2.7_ 
  
